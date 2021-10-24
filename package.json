@@ -1,0 +1,29 @@
+{
+  "name": "like-terminable",
+  "version": "1.0.0",
+  "description": "Handle resources like process, cluster, servers and req/res for gracefully exit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuKks/like-terminable.git"
+  },
+  "author": "Lucas Barrena <lucasbarrena@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuKks/like-terminable/issues"
+  },
+  "homepage": "https://github.com/LuKks/like-terminable#readme",
+  "keywords": [
+    "like",
+    "terminable",
+    "resource",
+    "graceful",
+    "exit"
+  ],
+  "dependencies": {
+    "terminable": "^1.0.1"
+  }
+}
