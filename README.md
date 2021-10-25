@@ -4,9 +4,7 @@ Handle process, cluster, servers and req/res for graceful exit
 
 ![](https://img.shields.io/npm/v/like-terminable.svg) ![](https://img.shields.io/npm/dt/like-terminable.svg) ![](https://img.shields.io/github/license/LuKks/like-terminable.svg)
 
-Supports cluster, process events, SIGTERM, SIGINT, SIGHUP, etc.\
-`server.close()` and `keep-alive` done right at socket level.\
-No need to change any code, works as expected.
+Supports cluster, process events, SIGTERM, SIGINT, SIGHUP, etc.
 
 ```javascript
 const terminable = require('like-terminable');
@@ -36,6 +34,9 @@ const server = app.listen(3000, function () {
 
 console.log('Press CTRL+C to gracefully close the server and twice to force SIGINT');
 ```
+
+`server.close()` and `keep-alive` done right at socket level.\
+No need to change any code, works as expected.
 
 ## Install
 ```
