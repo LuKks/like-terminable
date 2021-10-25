@@ -24,7 +24,7 @@
     "exit"
   ],
   "dependencies": {
-    "terminable": "^1.0.3"
+    "terminable": "^1.2.0"
   },
   "devDependencies": {
     "standard": "^16.0.4"
