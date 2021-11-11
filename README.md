@@ -21,7 +21,7 @@ const server = app.listen(3000, function () {
   terminable.add(server) // always add it after 'listening' event
 })
 
-console.log('Press CTRL+C to gracefully close the server and twice to force SIGINT')
+console.log('Press CTRL+C to clean up the process, twice to force SIGINT')
 ```
 
 ## Install
