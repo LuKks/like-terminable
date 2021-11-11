@@ -17,20 +17,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.get('/long-polling', function (req, res) {
-  const timeoutId = setTimeout(() => {
-    res.send('Hello World!')
-  }, 3000)
-
-  // optional:
-  terminable.find(res).once('cleanup', function () {
-    clearTimeout(timeoutId)
-    res.end()
-  })
-})
-
 const server = app.listen(3000, function () {
-  terminable.add(server)
+  terminable.add(server) // always add it after 'listening' event
 })
 
 console.log('Press CTRL+C to gracefully close the server and twice to force SIGINT')
@@ -39,6 +27,65 @@ console.log('Press CTRL+C to gracefully close the server and twice to force SIGI
 ## Install
 ```
 npm i like-terminable
+```
+
+## Examples
+#### 'cleanup' event
+```javascript
+app.get('/long-polling', function (req, res) {
+  const timeoutId = setTimeout(() => {
+    res.send('Hello World!')
+  }, 3000)
+
+  terminable.find(res).once('cleanup', function () {
+    clearTimeout(timeoutId)
+    res.end()
+  })
+})
+```
+
+Note: 'cleanup' event could be emitted multiple times,\
+be aware of `on('cleanup', ..)` vs `once('cleanup', ..)`.
+
+#### 'cleanup' state
+```javascript
+app.get('/long-processing', function (req, res) {
+  const state = terminable.find(res)
+
+  while (true) {
+    if (state.terminated) {
+      res.end()
+      return
+    }
+
+    if (Math.random() > 0.9999) {
+      res.json({ processed: true })
+      return
+    }
+  }
+})
+```
+
+#### How to close the server without terminating the process?
+```javascript
+const server = app.listen(3000, function () {
+  const state = terminable.add(server)
+
+  // ie. close the server and clean up all the resources under server:
+  state.cleanup()
+})
+```
+
+#### How to manually clean up the process?
+```javascript
+const server = app.listen(3000, function () {
+  terminable.add(server)
+
+  // ie. clean up all the resources under process after 3 seconds
+  setTimeout(function () {
+    terminable.cleanup()
+  }, 3000)
+})
 ```
 
 ## License
