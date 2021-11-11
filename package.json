@@ -1,6 +1,6 @@
 {
   "name": "like-terminable",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Handle resources like process, cluster, servers and req/res for gracefully exit",
   "main": "index.js",
   "scripts": {
